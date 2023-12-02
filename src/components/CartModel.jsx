@@ -1,7 +1,11 @@
 import React from 'react';
 import Button from './Button';
+import { CartContext } from "../store/cart-context";
+import { useContext } from "react";
 
 function CartModel(props) {
+
+    const { toggleCartModal } = useContext(CartContext);
     return (
         <div className='fixed inset-0  backdrop-blur-sm flex justify-center items-center text-gray-800'>
             <div className='bg-slate-50 w-1/2 flex flex-col p-6 gap-5'>
@@ -16,7 +20,7 @@ function CartModel(props) {
                     <h2>total</h2>
                 </div>
                 <div className='flex flex-row justify-end gap-2'>
-                    <Button>Close</Button>
+                    <Button handleClick={toggleCartModal}>Close</Button>
                     <Button>Checkout</Button>
                 </div>              
             </div>

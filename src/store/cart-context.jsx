@@ -2,7 +2,9 @@ import { createContext, useState } from "react";
 
 export const CartContext = createContext({
     count : 0,
-    handleCartCount : () => {}
+    handleCartCount : () => {},
+    isCartModelOpen : false,
+    toggleCartModal:() => {}
 });
 
 export function CartContextProvider({children}){
@@ -10,6 +12,12 @@ export function CartContextProvider({children}){
     const [cart, setCart] = useState({
         count : 0,  
     });
+
+    const [isCartModelOpen , setIsCartModelOpen] = useState(false);
+
+    function toggleCartModal(){
+        setIsCartModelOpen(prev => !prev);
+    }
 
 
     function handleCartCount(){
@@ -27,7 +35,9 @@ export function CartContextProvider({children}){
 
     let cartCtx = {
         count : cart.count,
-        handleCartCount: handleCartCount 
+        handleCartCount: handleCartCount,
+        isCartModelOpen:isCartModelOpen,
+        toggleCartModal:toggleCartModal
     }
 
     return(
