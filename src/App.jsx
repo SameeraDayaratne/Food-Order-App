@@ -1,4 +1,5 @@
 
+import CartModel from "./components/CartModel";
 import Header from "./components/Header";
 import Main from "./components/Main";
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <Header />
       <Main />
+      <CartModel />
     </>
   );
 }
