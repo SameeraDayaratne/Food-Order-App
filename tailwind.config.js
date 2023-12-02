@@ -5,7 +5,12 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors:{
+        mealCard : '#1d1a16',
+        mealPrice : '#312c1d'
+      }
+    },
   },
   plugins: [],
 }
