@@ -14,7 +14,7 @@ function MealCard({meal}) {
                     <h2 className='bg-mealPrice px-8 py-1 rounded-md text-yellow-400'>{meal.price}</h2>
                     <p className='text-center px-3'>{meal.description}</p>
                    
-                    <button onClick={handleCartCount} className='p-5 py-2 bg-yellow-500 text-center text-gray-900 rounded-md font-semibold'>Add To Cart</button>
+                    <button onClick={() => handleCartCount(meal)} className='p-5 py-2 bg-yellow-500 text-center text-gray-900 rounded-md font-semibold'>Add To Cart</button>
                 </div>
                 
             </div>
