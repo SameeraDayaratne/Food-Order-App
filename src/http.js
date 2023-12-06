@@ -28,4 +28,6 @@ export async function submitOrder(order){
     {
         throw new Error('Could not submit the order');
     }
+
+    return resData;
 }

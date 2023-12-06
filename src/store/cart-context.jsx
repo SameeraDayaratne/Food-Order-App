@@ -9,6 +9,8 @@ export const CartContext = createContext({
     closeFormModal:() => {},
     cartItems : [],
     handleCartItemCount:() => {},
+     toggleSuccessModal: () => {},
+     isSuccessModalOpen:false
 });
 
 export function CartContextProvider({children}){
@@ -21,6 +23,12 @@ export function CartContextProvider({children}){
     const [isCartModelOpen , setIsCartModelOpen] = useState(false);
 
     const [isFormModalOpen , setIsFormModalOpen] = useState(false);
+
+    const [isSuccessModalOpen,setIsSuccessModalOpen] = useState(false);
+
+    function toggleSuccessModal(){
+        setIsSuccessModalOpen(prev => !prev);
+    }
 
     function toggleCartModal(){
         setIsCartModelOpen(prev => !prev);
@@ -134,7 +142,9 @@ export function CartContextProvider({children}){
         cartItems : cart.cartItems,
         handleCartItemCount:handleCartItemCount,
         openFormModal:openFormModal,
-        closeFormModal:closeFormModal
+        closeFormModal:closeFormModal,
+        toggleSuccessModal:toggleSuccessModal,
+        isSuccessModalOpen:isSuccessModalOpen
     }
 
 

@@ -5,9 +5,10 @@ import Main from "./components/Main";
 import { useContext } from "react";
 import { CartContext } from "./store/cart-context";
 import FormModel from "./components/FormModal";
+import SuccessModel from "./components/SuccessModal";
 function App() {
 
-  const { isCartModelOpen,isFormModalOpen } = useContext(CartContext);
+  const { isCartModelOpen,isFormModalOpen , isSuccessModalOpen} = useContext(CartContext);
 
   return (
     <>
@@ -15,6 +16,7 @@ function App() {
       <Main />
       {isCartModelOpen && <CartModel />}
       {isFormModalOpen && <FormModel />}
+      {isSuccessModalOpen && <SuccessModel />}
     </>
   );
 }

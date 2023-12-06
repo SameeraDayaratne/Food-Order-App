@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from './Button';
 import { CartContext } from "../store/cart-context";
 import { useContext } from "react";
 import {submitOrder} from '../http.js'
 
 
+
+
 function FormModel(props) {
 
     
 
-    const { closeFormModal , cartItems } = useContext(CartContext);
+    const { closeFormModal , cartItems ,toggleSuccessModal } = useContext(CartContext);
     let total = cartItems.reduce((p,c)=>{ 
         return(p + parseFloat(c.totalPrice));
     } , 0);
 
+
+    async function orderSubmission(orderData){
+        const res = await submitOrder(orderData);
+        closeFormModal();
+
+        toggleSuccessModal();
+    }
 
     function handleSubmit(event){
         event.preventDefault();
@@ -35,7 +44,7 @@ function FormModel(props) {
 
         try {
             
-            submitOrder(orderData);
+            orderSubmission(orderData);
 
         } catch (error) {
             
