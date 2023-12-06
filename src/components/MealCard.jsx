@@ -1,5 +1,4 @@
 import React from 'react';
-import BEEF from '../assets/beef-tacos.jpg'
 import { CartContext } from '../store/cart-context';
 import { useContext } from 'react';
 
