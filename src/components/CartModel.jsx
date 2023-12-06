@@ -6,7 +6,7 @@ import CartItem from './CartItem';
 
 function CartModel(props) {
 
-    const { toggleCartModal , cartItems } = useContext(CartContext);
+    const { toggleCartModal , cartItems , openFormModal } = useContext(CartContext);
     let total = cartItems.reduce((p,c)=>{ 
         return(p + parseFloat(c.totalPrice));
     } , 0);
@@ -15,8 +15,8 @@ function CartModel(props) {
             <div className='bg-slate-50 w-1/2 flex flex-col p-6 gap-5'>
                 <div><h2 className='font-bold text-xl'>Your Cart</h2></div>
                 <div className='flex flex-col gap-1'>
-
-                    {cartItems.map(cartItem => <CartItem key={cartItem.id} title={cartItem.name} itemCount={cartItem.mealCount} id={cartItem.id}/>)}
+                    {cartItems.length == 0 && <p>Your Cart Is Empty</p>}
+                    {cartItems.length > 0 && cartItems.map(cartItem => <CartItem key={cartItem.id} title={cartItem.name} itemCount={cartItem.mealCount} id={cartItem.id}/>)}
            
                 </div>
                     
@@ -26,7 +26,7 @@ function CartModel(props) {
                 </div>
                 <div className='flex flex-row justify-end gap-2'>
                     <Button handleClick={toggleCartModal}>Close</Button>
-                    <Button>Checkout</Button>
+                    <Button handleClick={openFormModal}>Checkout</Button>
                 </div>              
             </div>
         </div>

@@ -5,6 +5,8 @@ export const CartContext = createContext({
     handleCartCount : () => {},
     isCartModelOpen : false,
     toggleCartModal:() => {},
+    openFormModal:() => {},
+    closeFormModal:() => {},
     cartItems : [],
     handleCartItemCount:() => {},
 });
@@ -18,8 +20,19 @@ export function CartContextProvider({children}){
 
     const [isCartModelOpen , setIsCartModelOpen] = useState(false);
 
+    const [isFormModalOpen , setIsFormModalOpen] = useState(false);
+
     function toggleCartModal(){
         setIsCartModelOpen(prev => !prev);
+    }
+
+    function openFormModal(){
+        setIsCartModelOpen(false);
+        setIsFormModalOpen(true);
+    }
+
+    function closeFormModal(){
+        setIsFormModalOpen(false);
     }
 
     function handleCartItemCount(action , id){
@@ -116,9 +129,12 @@ export function CartContextProvider({children}){
         count : cart.count,
         handleCartCount: handleCartCount,
         isCartModelOpen:isCartModelOpen,
+        isFormModalOpen:isFormModalOpen,
         toggleCartModal:toggleCartModal,
         cartItems : cart.cartItems,
-        handleCartItemCount:handleCartItemCount
+        handleCartItemCount:handleCartItemCount,
+        openFormModal:openFormModal,
+        closeFormModal:closeFormModal
     }
 
     console.log(cart.cartItems);
