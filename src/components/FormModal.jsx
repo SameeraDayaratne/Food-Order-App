@@ -2,22 +2,47 @@ import React from 'react';
 import Button from './Button';
 import { CartContext } from "../store/cart-context";
 import { useContext } from "react";
+import {submitOrder} from '../http.js'
 
 
 function FormModel(props) {
 
-    function handleSubmit(event){
-        event.preventDefault();
-        const fd = new FormData(event.target);
-        const data = Object.fromEntries(fd.entries());
-        console.log(data);
-        
-    }
+    
 
     const { closeFormModal , cartItems } = useContext(CartContext);
     let total = cartItems.reduce((p,c)=>{ 
         return(p + parseFloat(c.totalPrice));
     } , 0);
+
+
+    function handleSubmit(event){
+        event.preventDefault();
+        const fd = new FormData(event.target);
+        const data = Object.fromEntries(fd.entries());
+
+        const orderData = {
+            items : cartItems,
+            customer : {
+                'name': data.name,
+                'email' :data.email,
+                'street' : data.street,
+                'postal-code' : data.code,
+                'city' : data.city
+
+            }
+        }
+        console.log(orderData);
+
+        try {
+            
+            submitOrder(orderData);
+
+        } catch (error) {
+            
+        }
+        
+        
+    }
     return (
         <div className='fixed inset-0  backdrop-blur-sm flex justify-center items-center text-gray-800'>
             <div className='bg-orange-100 w-1/2 flex flex-col p-6 gap-5 rounded-sm'>

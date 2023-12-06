@@ -17,12 +17,13 @@ app.use((req, res, next) => {
 
 app.get('/meals', async (req, res) => {
   const meals = await fs.readFile('./data/available-meals.json', 'utf8');
-  console.log(meals);
   res.json(JSON.parse(meals));
 });
 
 app.post('/orders', async (req, res) => {
   const orderData = req.body.order;
+
+  // console.log(orderData);
 
   if (orderData === null || orderData.items === null || orderData.items === []) {
     return res
