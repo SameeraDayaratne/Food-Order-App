@@ -137,7 +137,7 @@ export function CartContextProvider({children}){
         closeFormModal:closeFormModal
     }
 
-    console.log(cart.cartItems);
+
 
     return(
         <CartContext.Provider value={cartCtx} >
